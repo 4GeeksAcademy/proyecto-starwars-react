@@ -1,0 +1,82 @@
+.card-text {
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.red-line {
+    border-top: 1px solid red;
+}
+
+.mini-container {
+    text-align: center;
+    color: rgb(186, 9, 9);
+    font-weight: bold;
+}
+
+.mini-container p {
+    font-size: 13px;
+}
+
+#boton-fav {
+    width: 200px;
+    margin-right: 10px;
+}
+
+#Button1 {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#Button1:hover {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: red;
+    background: yellow;
+}
+
+.dropy {
+    width: 200px;
+    padding-inline: 5px;
+    background-color: cadetblue;
+    color: black;
+}
+
+.counter {
+    background: grey;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    padding: 1px;
+
+}
+
+.bean {
+    color: black;
+}
+
+.bean:hover {
+    color: rgb(225, 15, 15);
+    cursor: pointer;
+}
+
+.navbar {
+
+    z-index: 10;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.iconosw {
+    color: red;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}

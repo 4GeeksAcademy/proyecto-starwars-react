@@ -1,0 +1,75 @@
+.card-group {
+    margin: 20px;
+}
+
+
+img {
+    width: 400px;
+    height: 200px;
+    background: grey;
+
+}
+
+.card {
+    
+    display: flex;
+    width: 300px;
+    height: 400px;
+    color: white; 
+    background: rgb(53, 51, 51); 
+    margin-top: 65px; 
+}
+
+.card-people {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 30px;
+}
+
+p{
+    margin: 0px; 
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.boton-learn {
+    width: 200px;
+    height: 50px;
+    color: blue;
+    outline: 1px solid blue;
+    background-color: rgb(139, 37, 37);
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.boton-learn:hover{
+    color: white;
+    background-color: blue;
+}
+.boton-learn:active{
+  color: red; 
+}
+
+.boton-heart {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    color: yellow; 
+    border: 2px solid rgb(228, 228, 17); 
+    background-color: rgb(139, 37, 37);
+}
+
+.boton-heart:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: blue; 
+}
+
+.boton-heart:active{
+    color: rgb(229, 17, 17);
+}
+
