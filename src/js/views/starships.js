@@ -58,8 +58,8 @@ export const Starships = () => {
 						</div>
 
 					</div>
-					<div className="red-line mt-3"></div>
-					<div className="mini-container d-flex justify-content-evenly mt-3">
+					<div className="blue-line mt-3"></div>
+					<div className="mini-container d-flex justify-content-evenly mt-3" style={{color:"rgba(0, 132, 255, 0.842)"}}>
 						<div><h3>Model</h3><p>{storeStarships.model}</p></div>
 						<div><h3>Manufacturer</h3><p>{storeStarships.manufacturer}</p></div>
 						<div><h3>Crew</h3><p>{storeStarships.crew}</p></div>

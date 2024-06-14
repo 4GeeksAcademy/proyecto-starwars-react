@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState, useSyncExternalStore } from "react";
+import React, { useContext, useEffect, useState, useSyncExternalStore ,} from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 
 const imagePeopleUrls = [
 	"https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796",
@@ -22,17 +22,23 @@ export const PeopleComp = () => {
 
 
 	const { store, actions } = useContext(Context);
-
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		actions.getPeople();
 	}, []);
 	console.log(store.people);
 
+	const handleLearnMoreClick = (uid) => {
+        // Redirige a la página de signup
+		console.log("Navigating to signup page...");
+        navigate('/signup');
+    };
+
 
 	return (
 		<>
-			<div className="card-people d-flex">
+			<div className="card-people d-flex" >
 				{store.people.map((item, index) => (
 					<div className="card-group" key={index}>
 						<div className="card">
@@ -42,7 +48,7 @@ export const PeopleComp = () => {
 							</div>
 							<div className="footer">
 								<Link to={`/people/${item.uid}`}>
-									<button className="boton-learn" >Learn More!</button>
+									<button className="boton-learn" onClick={() => handleLearnMoreClick(item.uid)} >Learn More!</button>
 								</Link>
 								<button className="boton-heart" onClick={()=> actions.addFavourites(item.name)}>
 									<i className="fas fa-heart" />
@@ -56,3 +62,5 @@ export const PeopleComp = () => {
         </>
 	);
 };
+
+

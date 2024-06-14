@@ -2,23 +2,19 @@
     margin: 20px;
 }
 
-
-img {
-    width: 400px;
-    height: 200px;
-    background: grey;
-
-}
-
 .card {
-    
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 300px;
     height: 400px;
-    color: white; 
-    background: rgb(53, 51, 51); 
-    margin-top: 65px; 
-}
+    color: rgba(255, 255, 255, 0.7);
+    background: rgb(0, 0, 0);
+    margin-top: 65px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 132, 255, 0.842);
+    transition: transform 0.3s, box-shadow 0.3s;
+} 
 
 .card-people {
     width: 100%;
@@ -27,8 +23,14 @@ img {
     margin-bottom: 30px;
 }
 
-p{
-    margin: 0px; 
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
 }
 
 .footer {
@@ -40,36 +42,43 @@ p{
 .boton-learn {
     width: 200px;
     height: 50px;
-    color: blue;
+    color: 'rgba(255, 255, 255, 0.7)';
     outline: 1px solid blue;
-    background-color: rgb(139, 37, 37);
+    background-color: 'rgb(167, 230, 255)';
+    border: 'none';
+    box-shadow: '0 0 10px rgba(255, 255, 0, 0.7)';
     border-radius: 5px;
     font-size: 20px;
+    cursor: 'pointer'
+   
 }
 
-.boton-learn:hover{
+.boton-learn:hover {
     color: white;
     background-color: blue;
 }
-.boton-learn:active{
-  color: red; 
+
+.boton-learn:active {
+    color: red;
 }
 
 .boton-heart {
     width: 50px;
     height: 50px;
     border-radius: 5px;
-    color: yellow; 
-    border: 2px solid rgb(228, 228, 17); 
-    background-color: rgb(139, 37, 37);
+    color: 'rgba(255, 255, 255, 0.7)';
+    border: "none";
+    background-color: '#1a1a1a';
+    box-shadow: '0 0 10px rgba(255, 255, 0, 0.7)';
+    outline: 1px solid blue;
 }
 
-.boton-heart:hover{
+.boton-heart:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: blue; 
+    background-color: blue;
 }
 
-.boton-heart:active{
+.boton-heart:active {
     color: rgb(229, 17, 17);
 }
-
+ 

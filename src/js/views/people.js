@@ -52,8 +52,8 @@ export const People = () => {
 						</div>
 
 					</div>
-					<div className="red-line mt-3"></div>
-					<div className="mini-container d-flex justify-content-evenly mt-3">
+					<div className="blue-line mt-3"></div>
+					<div className="mini-container d-flex justify-content-evenly mt-3" style={{color:"rgba(0, 132, 255, 0.842)"}}>
 						<div><h3>Height</h3><p>{storePeople.height}</p></div>
 						<div><h3>Mass</h3><p>{storePeople.mass}</p></div>
 						<div><h3>Hair Color</h3><p>{storePeople.hair_color}</p></div>

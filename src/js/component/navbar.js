@@ -1,38 +1,127 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../../styles/demo.css";
-import { Context } from "../store/appContext"
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-	const { store, actions } = useContext(Context);
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            actions.validateToken();
+        }
+    }, []);
 
-	console.log(store.favourites);
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+        actions.setAuth(false);
+    };
 
-	console.log(store.counter);
+    return (
+        <nav className="navbar navbar-light bg-dark mb-2">
+            <Link to="/" className="navbar-brand ms-5">
+                <img style={{ width: "80px", height: "50px" }} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/2560px-Star_Wars_Logo.svg.png" alt="Star Wars Logo"/>
+            </Link>
 
-	return (
-		
-		<nav className="navbar navbar-light bg-dark mb-3 d-flex justify-content-between">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1 ms-5"><img style={{ width: "80px", height: "50px" }} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/2560px-Star_Wars_Logo.svg.png"></img></span>
-			</Link>
-			<div className="ml-auto">
+            <div className="d-flex align-items-center">
+                {store.auth && (
+                    <div className="dropdown me-3">
+                        <button
+                            className="btn dropdown-toggle"
+                            style={{
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                backgroundColor: '#1a1a1a',
+                                border: 'none',
+                                boxShadow: '0 0 10px rgba(0, 132, 255, 0.842)',
+                                cursor: 'pointer',
+                                fontSize: '12px',
+                                padding: '8px 15px',
+								fontSize: '15px'
+                            }}
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            Favorites <span className="counter">{store.counter}</span>
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ right: '0', left: 'auto' }}>
+                            {store.favourites.map((item, index) => (
+                                <li className="text-dark d-flex justify-content-between" key={index}>
+                                    {item}
+                                    <span className="bean" onClick={() =>
+                                        actions.deleteFavourites(store.favourites.filter((item, myIndex) => index !== myIndex))
+                                    }>
+                                        <i className="fas fa-trash" />
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
 
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle me-3" style={{width:"200px"}} type="button" id="Button1" data-bs-toggle="dropdown" aria-expanded="false">
-						Favorites <span className="counter">{store.counter}</span>
-					</button>
-					<ul class="dropy dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						{store.favourites.map((item, index) => (<li className="text-dark d-flex justify-content-between" key={index}>{item}<span className="bean" onClick={() =>
-							actions.deleteFavourites(store.favourites.filter((item, myIndex) => index !== myIndex))}><i className="fas fa-trash"></i></span></li>))}
+                {store.auth ? (
+                    <div className="ml-auto">
+                        <button
+                            style={{
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                backgroundColor: '#1a1a1a',
+                                border: 'none',
+                                boxShadow: '0 0 10px rgba(0, 132, 255, 0.842)',
+                                cursor: 'pointer',
+                                marginRight: '10px',
+								borderRadius:'5px',
+								padding: '6px 13px'
+                            }}
+                            onClick={handleLogout}
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                ) : (
+					
+                    location.pathname === "/" && (
+                        <div className="d-flex align-items-center ml-3">
+                            <Link to="/signup">
+                                <button
+                                    style={{
+                                        color: 'rgba(255, 255, 255, 0.7)',
+                                        backgroundColor: '#1a1a1a',
+                                        border: 'none',
+                                        boxShadow: '0 0 10px rgba(0, 132, 255, 0.842)',
+                                        cursor: 'pointer',
+                                        marginRight: '10px',
+                                        borderRadius:'5px',
+								        padding: '6px 13px'
+                                    }}
+                                >
+                                    Signup
+                                </button>
+                            </Link>
 
-					</ul>
-				</div>
-
-
-			</div>
-		</nav>
-		
-	);
+                            <Link to="/login">
+                                <button
+                                    style={{
+                                        color: 'rgba(255, 255, 255, 0.7)',
+                                        backgroundColor: '#1a1a1a',
+                                        border: 'none',
+                                        boxShadow: '0 0 10px rgba(0, 132, 255, 0.842)',
+                                        cursor: 'pointer',
+                                        marginRight: '10px',
+                                        borderRadius:'5px',
+								        padding: '6px 13px'
+                                    }}
+                                >
+                                    Login
+                                </button>
+                            </Link>
+                        </div>
+                    )
+                )}
+            </div>
+        </nav>
+    );
 };

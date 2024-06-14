@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, getActions, setStore, navigate }) => {
 
 
 	return {
@@ -14,9 +14,107 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			favourites: [],
 			counter: 0,
+			auth: false
 		},
 		
 		actions: {
+
+			Signup : async (e) => {
+				e.preventDefault();
+			
+				const userData = {
+					userName: e.target.userName.value,
+					email: e.target.email.value,
+					password: e.target.password.value,
+					age: parseInt(e.target.age.value)
+				};
+			
+				try {
+					const response = await fetch("https://super-space-happiness-69gj6p5v4p7qc45q7-3000.app.github.dev/create-user", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(userData)
+					});
+			
+					const data = await response.json();
+					console.log(data);
+			
+					if (response.status === 200) {
+						// Aquí podrías almacenar el token en localStorage si lo deseas
+						navigate("/login"); // Redirecciona a la página de login después de registrarse exitosamente
+					} else {
+						// Aquí puedes manejar cualquier otro caso de respuesta, como mostrar un mensaje de error
+					}
+				} catch (error) {
+					console.error("Error creating user:", error);
+					// Aquí puedes manejar errores de red u otros errores que puedan ocurrir
+				}
+			},
+			
+
+			login: async (email, password) => {
+				try {
+					const response = await fetch("https://super-space-happiness-69gj6p5v4p7qc45q7-3000.app.github.dev/login", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							"email": email,
+							"password": password
+						})
+					});
+			
+					const data = await response.json();
+					
+					if (response.status === 200) {
+						localStorage.setItem("token", data.access_token);
+						setStore({ auth: true });
+						console.log("Token almacenado correctamente:", data.access_token);
+						return true;
+					} else {
+						console.error("Error en la respuesta:", response.status, data.error);
+						return false;
+					}
+				} catch (error) {
+					console.error("Error al realizar la solicitud:", error);
+					return false;
+				}
+			},
+			
+
+			
+
+			validateToken: async () => {
+				
+	
+				const accessToken = localStorage.getItem("token");
+				try {
+					const response = await fetch("https://super-space-happiness-69gj6p5v4p7qc45q7-3000.app.github.dev/valid-token", {
+						method: 'GET',
+						headers: {
+							'Content-type':"application/json",
+							'Authorization': `Bearer ${accessToken}`
+						}
+					});
+					let data = await response.json()
+					if (response.status === 200) {
+						setStore({ auth: true }); // Actualiza el estado `auth`
+					} else {
+						setStore({ auth: false }); // En caso de token no válido, actualiza el estado `auth`
+					}
+				} catch (error) {
+					console.error(error);
+					setStore({ auth: false }); // En caso de error, actualiza el estado `auth`
+				}
+			},
+			
+			setAuth: (authStatus) => {
+				setStore({ auth: authStatus });
+			},
+			
 
 			addFavourites:(name)=>{
 				setStore({favourites: getStore().favourites.concat(name)});

@@ -51,8 +51,8 @@ export const Planets = () => {
 						</div>
 						
 					</div>
-					<div className="red-line mt-3"></div>
-					<div className="mini-container d-flex justify-content-evenly mt-3">
+					<div className="blue-line mt-3"></div>
+					<div className="mini-container d-flex justify-content-evenly mt-3" style={{color:"rgba(0, 132, 255, 0.842)"}}>
 						<div><h3>Name</h3><p>{storePlanets.name}</p></div>
 						<div><h3>Climate</h3><p>{storePlanets.climate}</p></div>
 						<div><h3>Population</h3><p>{storePlanets.population}</p></div>

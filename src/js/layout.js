@@ -4,6 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 
 import { Home } from "./views/home";
+import { Login } from "./views/login";
+import Signup  from "./views/signup";
 import { People } from "./views/people";
 import { Planets } from "./views/planets";
 import { Starships } from "./views/starships";
@@ -28,6 +30,8 @@ const Layout = () => {
 					</div>
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/signup" element={<Signup />} />
 						<Route path="/people/:id" element={<People />} />
 						<Route path="/planets/:id" element={<Planets />} />
 						<Route path="/starships/:id" element={<Starships />} />
